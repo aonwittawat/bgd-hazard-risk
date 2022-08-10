@@ -1,0 +1,13 @@
+{
+  "title": "Bangladesh Hazard & Risk Map",
+  "description": "",
+  "portalUrl": "https://unosat-geodrr.cern.ch/portal",
+  "oauthappid": "6oMt73ZOB5GbB8L2",
+  "authMode": "auto",
+  "apiKey": null,
+  "group": "",
+  "webmap": "91a1a9800c05436685f2227063523b78",
+  "webscene": "",
+  "container": "view-container",
+  "shareable": []
+}

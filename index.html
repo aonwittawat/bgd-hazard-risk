@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1.0 maximum-scale=1.0"/>
+    <!-- META -->
+    <meta property="og:title" content="Bangladesh Hazard & Risk Map">
+    <meta property="og:description" content="This is a web app of Department of Disaster Management (DDM) developed with technical support from United Nations Satellite Centre (UNOSAT) through the NORAD funded project to explore the hazard & risk maps of Bangladesh">
+    <!--<meta property="og:image" content="https://.../assets/hazard-risk.png">-->
+    <!--<meta property="og:url" content="https://.../Hazard-Risk/index.html">-->
+    <!-- ICON -->
+    <link rel="icon" href="./assets/favicon.ico" sizes="32x32" type="image/vnd.microsoft.icon">
+    <!-- TITLE -->
+    <title class="application-title">Bangladesh Hazard & Risk Map</title>
+    
+    <!-- CHARTJS -->
+    <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.1/chart.min.js" integrity="sha512-QSkVNOCYLtj73J4hbmVoOV6KVZuMluZlioC+trLpewV8qMjsWqlIQvkn1KGX2StWvPMdWGBqim1xlC8krl1EKQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>-->
+    <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/chartjs-plugin-annotation/1.4.0/chartjs-plugin-annotation.min.js" integrity="sha512-HrwQrg8S/xLPE6Qwe7XOghA/FOxX+tuVF4TxbvS73/zKJSs/b1gVl/P4MsdfTFWYFYg/ISVNYIINcg35Xvr6QQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>-->
+    
+    <!-- CALCITE -->
+    <script src="https://js.arcgis.com/calcite-components/1.0.0-beta.86/calcite.esm.js" type="module"></script>
+    <link href="https://js.arcgis.com/calcite-components/1.0.0-beta.86/calcite.css" rel="stylesheet"/>
+    
+    <!-- ArcGIS API for JavaScript-->
+    <link href="https://js.arcgis.com/4.24/@arcgis/core/assets/esri/themes/light/main.css" rel="stylesheet"/>
+    <script src="https://js.arcgis.com/4.24/"></script>
+    
+    <!-- APPLICATION -->
+    <link rel="stylesheet" type="text/css" href="./css/app-base.css"/>
+    <link rel="stylesheet" type="text/css" href="./css/application.css">
+    <script type="module" src="./js/Application.js"></script>
+  </head>
+  <body class="calcite-theme-light">
+    
+    <calcite-shell dir="ltr">
+      
+      <header class="content-row" slot="header">
+        <div class="content-row">
+          <img class="margin-right-1"          
+          slot="thumbnail"
+          src="./assets/Government_of_the_People's_Republic_of_Bangladesh.png"
+          alt="Department of Disaster Management (DDM)"
+          title="Department of Disaster Management (DDM)"
+          height="50px"
+          />
+          <img class="margin-right-1"
+          slot="thumbnail"
+          src="./assets/unosat-logo-vertical-blue-50px.png"
+          alt="This is an image of UNOSAT logo"
+          title="United Nations Satellite Centre (UNOSAT - UNITAR)"
+          height="50px"
+          />
+          <h2 class="application-title margin-right-1"></h2>
+          <calcite-chip color="yellow" scale="s">Alpha version</calcite-chip>
+        </div>
+        
+        <div class="content-row">
+          
+          <div id="sign-in-container"></div>
+          
+          <calcite-action-bar class="content-row" expand-disabled="true">
+            <calcite-action id="app-share-action" appearance="clear" scale="m" title="share current options..." text="share current options" icon="link"></calcite-action>
+            <calcite-action id="app-details-action" appearance="clear" scale="m" title="app details..." text="app details" icon="information"></calcite-action>
+          </calcite-action-bar>
+  
+          <!-- SHAREABLE ALERT -->
+          <calcite-alert id="app-share-alert" icon="launch" placement="bottom" closable auto-dismiss auto-dismiss-duration="medium" color="green">
+            <div slot="message">
+              Shareable link has been copied to the clipboard.
+            </div>
+            <calcite-link id="app-share-link" slot="link" href="#" target="_blank" role="link" title="open in new tab">
+              open in new tab
+            </calcite-link>
+          </calcite-alert>
+  
+          <!-- NOTICES ADN ALERTS -->
+          <calcite-alert id="app-notice" icon="" placement="bottom" width="auto" closable color="red">
+            <div slot="title"></div>
+            <div slot="message"></div>
+          </calcite-alert>
+
+        </div>
+      </header>
+      
+      <!-- LEFT -->
+      <calcite-shell-panel slot="primary-panel" position="start" width-scale="m" collapsed="false">
+        <calcite-action-bar slot="action-bar">
+          <calcite-action text="Layers" icon="layers" class="toggle-action" data-toggle="options" active></calcite-action>
+        </calcite-action-bar>
+        
+        <calcite-panel heading="Hazard & Risk Maps" class="toggle-panel" data-toggle="options">
+          <calcite-action slot="header-actions-start" icon="analysis" scale="s"></calcite-action>
+          <div slot="header-actions-end">
+            <calcite-action icon="x" title="close panel" class="toggle-close" data-toggle="options"></calcite-action>
+          </div>
+          <div class="calcite-panel-content">
+            
+            <calcite-tabs layout="center">
+              
+              <calcite-tab-nav id="analysis-type-option" slot="tab-nav">
+                <calcite-tab-title tab="hazard-tab" icon-start="color-coded-map" class="padding-m" active>
+                  Hazard
+                </calcite-tab-title>
+                <calcite-tab-title tab="risk-tab" icon-start="grid-hexagon" class="padding-m">
+                  Risk
+                </calcite-tab-title>
+              </calcite-tab-nav>
+              
+              <calcite-tab tab="hazard-tab">
+                <calcite-block heading="Flood inundation" class="calcite-block-fill" collapsible open>
+                  <div slot="icon" class="flood-icon"></div>
+                  <!-- 
+                  <div slot="control" class="content-row">
+                    <calcite-action id="flood-opacity" slot="actions-end" icon="transparency"></calcite-action>
+                    <calcite-action id="flood-opacity" slot="actions-end" icon="chevron-up"></calcite-action>
+                  </div>
+                  -->
+                  <calcite-label alignment="start" layout="inline">
+                    <calcite-switch id="fl-25yrs-switch" scale="s"></calcite-switch>25 year return period
+                  </calcite-label>                  
+                  <calcite-label alignment="start" layout="inline">
+                    <calcite-switch id="fl-50yrs-switch" scale="s"></calcite-switch>50 year return period
+                  </calcite-label>
+                  <calcite-label alignment="start" layout="inline">
+                    <calcite-switch id="fl-100yrs-switch" scale="s"></calcite-switch>100 year return period
+                  </calcite-label>
+                  <calcite-label alignment="start" layout="inline">
+                    <calcite-switch id="fl-150yrs-switch" scale="s"></calcite-switch>150 year return period
+                  </calcite-label>
+                </calcite-block>
+                
+                <calcite-block heading="Storm surge inundation" class="calcite-block-fill" collapsible>
+                  <div slot="icon" class="storm-surge-icon"></div>
+                  <calcite-label alignment="start" layout="inline">
+                    <calcite-switch id="ss-25yrs-switch" scale="s"></calcite-switch>25 year return period
+                  </calcite-label>                  
+                  <calcite-label alignment="start" layout="inline">
+                    <calcite-switch id="ss-50yrs-switch" scale="s"></calcite-switch>50 year return period
+                  </calcite-label>
+                  <calcite-label alignment="start" layout="inline">
+                    <calcite-switch id="ss-100yrs-switch" scale="s"></calcite-switch>100 year return period
+                  </calcite-label>
+                </calcite-block>
+                  
+                <calcite-block heading="Landslide susceptibility" class="calcite-block-fill" collapsible>
+                  <div slot="icon" class="landslide-icon"></div>
+                  <calcite-label alignment="start" layout="inline">
+                    <calcite-switch id="ls-rf-switch" scale="s"></calcite-switch>due to rainfall                    
+                  </calcite-label>
+                  <calcite-label alignment="start" layout="inline">
+                    <calcite-switch id="ls-eq-switch" scale="s"></calcite-switch>due to earthquake
+                  </calcite-label>
+                </calcite-block>
+
+                <calcite-block heading="Drought" class="calcite-block-fill" collapsible>
+                  <div slot="icon" class="drought-icon"></div>
+                  <calcite-label alignment="start" layout="inline">
+                    Pre-Monsoon Drought
+                  </calcite-label>
+                  <calcite-label alignment="start" layout="inline">
+                    <calcite-switch id="pmd-10yrs-switch" scale="s"></calcite-switch>10 Year Return Period                   
+                  </calcite-label>
+                  <calcite-label alignment="start" layout="inline">
+                    <calcite-switch id="pmd-50yrs-switch" scale="s"></calcite-switch>50 Year Return Period                   
+                  </calcite-label>
+                  <calcite-label alignment="start" layout="inline">
+                    <calcite-switch id="pmd-100yrs-switch" scale="s"></calcite-switch>100 Year Return Period                   
+                  </calcite-label>                                                      
+                  <calcite-label alignment="start" layout="inline">
+                    Kharif Drought
+                  </calcite-label>
+                  <calcite-label alignment="start" layout="inline">
+                    <calcite-switch id="kd-10yrs-switch" scale="s"></calcite-switch>10 Year Return Period                   
+                  </calcite-label>
+                  <calcite-label alignment="start" layout="inline">
+                    <calcite-switch id="kd-50yrs-switch" scale="s"></calcite-switch>50 Year Return Period                   
+                  </calcite-label>
+                  <calcite-label alignment="start" layout="inline">
+                    <calcite-switch id="kd-100yrs-switch" scale="s"></calcite-switch>100 Year Return Period                   
+                  </calcite-label>
+                </calcite-block>
+                
+                <calcite-block heading="Earthquake" class="calcite-block-fill" collapsible>
+                  <div slot="icon" class="earthquake-icon"></div>
+                  <calcite-label alignment="start" layout="inline">
+                    PGA corresponding to earthquake
+                  </calcite-label>                                    
+                  <calcite-label alignment="start" layout="inline">
+                    <calcite-switch id="eq-50yrs-switch" scale="s"></calcite-switch>50 Year Return Period                   
+                  </calcite-label>
+                  <calcite-label alignment="start" layout="inline">
+                    <calcite-switch id="eq-100yrs-switch" scale="s"></calcite-switch>100 Year Return Period                   
+                  </calcite-label>
+                  <calcite-label alignment="start" layout="inline">
+                    <calcite-switch id="eq-200yrs-switch" scale="s"></calcite-switch>200 Year Return Period                   
+                  </calcite-label>
+                  <calcite-label alignment="start" layout="inline">
+                    <calcite-switch id="eq-500yrs-switch" scale="s"></calcite-switch>500 Year Return Period                   
+                  </calcite-label>
+                  <calcite-label alignment="start" layout="inline">
+                    <calcite-switch id="eq-1000yrs-switch" scale="s"></calcite-switch>1000 Year Return Period                   
+                  </calcite-label>                  
+                </calcite-block>
+                
+                <calcite-block heading="Tsunami" class="calcite-block-fill" collapsible>
+                  <div slot="icon" class="tsunami-icon"></div>
+                  <calcite-label alignment="start" layout="inline">
+                    <calcite-switch id="ts-50yrs-switch" scale="s"></calcite-switch>50 Year Return Period                   
+                  </calcite-label>
+                  <calcite-label alignment="start" layout="inline">
+                    <calcite-switch id="ts-100yrs-switch" scale="s"></calcite-switch>100 Year Return Period                   
+                  </calcite-label>
+                  <calcite-label alignment="start" layout="inline">
+                    <calcite-switch id="ts-200yrs-switch" scale="s"></calcite-switch>200 Year Return Period                   
+                  </calcite-label>
+                  <calcite-label alignment="start" layout="inline">
+                    <calcite-switch id="ts-500yrs-switch" scale="s"></calcite-switch>500 Year Return Period                   
+                  </calcite-label>
+                  <calcite-label alignment="start" layout="inline">
+                    <calcite-switch id="ts-1000yrs-switch" scale="s"></calcite-switch>1000 Year Return Period                   
+                  </calcite-label>
+                </calcite-block>
+              
+              </calcite-tab>
+              
+              <calcite-tab tab="risk-tab" active>
+                <div class="section-info">
+                  Content will be available soon!
+                </div>
+              </calcite-tab>
+            
+            </calcite-tabs>
+          
+          </div>
+        </calcite-panel>                    
+      
+      </calcite-shell-panel>
+
+      <!-- CENTER -->
+      <div id="center-container" class="content-col content-fill">
+        <div id="view-container">
+          <calcite-loader id="view-updating" type="indeterminate" scale="s"></calcite-loader>
+        </div>
+      </div>
+      
+      <!-- CENTER BOTTOM 
+      <calcite-shell-center-row slot="center-row" position="start">
+        <calcite-panel id="bottom-container"></calcite-panel>
+      </calcite-shell-center-row>
+      -->
+
+    </calcite-shell>
+    
+    <!-- LOADER -->
+    <calcite-loader id="app-loader" active="true" type="indeterminate" scale="l"></calcite-loader>
+    
+    <!-- APP DETAILS MODAL -->
+    <calcite-modal id="app-details-modal" color="blue" background-color="grey" scale="m" width="m" role="dialog" aria-labelledby="app-modal-title">
+      <h3 slot="header" id="app-modal-title" class="application-title"></h3>
+      <div slot="content" class="application-description"></div>
+      <div slot="secondary" class="margin-m">
+        <calcite-label layout="inline">
+          <span>hide on startup</span>
+          <calcite-checkbox id="hide-startup-checkbox"></calcite-checkbox>
+        </calcite-label>
+      </div>
+      <calcite-button id="app-details-ok-btn" slot="primary" width="full" >OK</calcite-button>
+    </calcite-modal>
+   
+  
+  </body>
+</html>
