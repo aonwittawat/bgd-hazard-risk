@@ -265,6 +265,11 @@ calcite-notice {
   background: #2b2b2b;
 }
 
+.risk-icon {
+  width: 16px;
+  height: 16px;
+}
+
 .flood-icon,
 .storm-surge-icon,
 .landslide-icon,

@@ -18,8 +18,8 @@
     <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/chartjs-plugin-annotation/1.4.0/chartjs-plugin-annotation.min.js" integrity="sha512-HrwQrg8S/xLPE6Qwe7XOghA/FOxX+tuVF4TxbvS73/zKJSs/b1gVl/P4MsdfTFWYFYg/ISVNYIINcg35Xvr6QQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>-->
     
     <!-- CALCITE -->
-    <script src="https://js.arcgis.com/calcite-components/1.0.0-beta.86/calcite.esm.js" type="module"></script>
-    <link href="https://js.arcgis.com/calcite-components/1.0.0-beta.86/calcite.css" rel="stylesheet"/>
+    <script src="https://js.arcgis.com/calcite-components/1.0.0-beta.91/calcite.esm.js" type="module"></script>
+    <link href="https://js.arcgis.com/calcite-components/1.0.0-beta.91/calcite.css" rel="stylesheet"/>
     
     <!-- ArcGIS API for JavaScript-->
     <link href="https://js.arcgis.com/4.24/@arcgis/core/assets/esri/themes/light/main.css" rel="stylesheet"/>
@@ -85,11 +85,10 @@
       <!-- LEFT -->
       <calcite-shell-panel slot="primary-panel" position="start" width-scale="m" collapsed="false">
         <calcite-action-bar slot="action-bar">
-          <calcite-action text="Layers" icon="layers" class="toggle-action" data-toggle="options" active></calcite-action>
+          <calcite-action text="Display" icon="analysis" class="toggle-action" data-toggle="options" active></calcite-action>
         </calcite-action-bar>
         
-        <calcite-panel heading="Hazard & Risk Maps" class="toggle-panel" data-toggle="options">
-          <calcite-action slot="header-actions-start" icon="analysis" scale="s"></calcite-action>
+        <calcite-panel heading="Hazard & Risk Maps" class="toggle-panel" data-toggle="options">          
           <div slot="header-actions-end">
             <calcite-action icon="x" title="close panel" class="toggle-close" data-toggle="options"></calcite-action>
           </div>
@@ -98,10 +97,10 @@
             <calcite-tabs layout="center">
               
               <calcite-tab-nav id="analysis-type-option" slot="tab-nav">
-                <calcite-tab-title tab="hazard-tab" icon-start="color-coded-map" class="padding-m" active>
+                <calcite-tab-title tab="hazard-tab" icon-start="color-coded-map" class="padding-s">
                   Hazard
                 </calcite-tab-title>
-                <calcite-tab-title tab="risk-tab" icon-start="grid-hexagon" class="padding-m">
+                <calcite-tab-title tab="risk-tab" icon-start="grid-hexagon" class="padding-s" active>
                   Risk
                 </calcite-tab-title>
               </calcite-tab-nav>
@@ -224,9 +223,57 @@
               </calcite-tab>
               
               <calcite-tab tab="risk-tab" active>
-                <div class="section-info">
-                  Content will be available soon!
-                </div>
+                <calcite-block heading="Select Hazard" summary="click on hazard icon" class="calcite-block-fill" open>
+                  <calcite-icon slot="icon" icon="number-circle-1" scale="l"></calcite-icon>
+                  <div>
+                    <calcite-button title="Flood" appearance="clear" round scale="l">
+                      <img src="./assets/Flood.svg" class="risk-icon" alt="Flood">
+                    </calcite-button>
+                    <calcite-button title="Storm surge" appearance="clear" round scale="l" disabled>
+                      <img src="./assets/Storm-surge.svg" class="risk-icon" alt="Storm surge">
+                    </calcite-button>
+                    <calcite-button title="Landslide" appearance="clear" round scale="l" disabled>
+                      <img src="./assets/Landslide.svg" class="risk-icon" alt="Landslide">
+                    </calcite-button>
+                    <calcite-button title="Drought" appearance="clear" round scale="l" disabled>
+                      <img src="./assets/Drought.svg" class="risk-icon" alt="Drought">
+                    </calcite-button>
+                    <calcite-button title="Earthquake" appearance="clear" round scale="l" disabled>
+                      <img src="./assets/Earthquake.svg" class="risk-icon" alt="Earthquake">
+                    </calcite-button>
+                    <calcite-button title="Tsunami" appearance="clear" round scale="l" disabled>
+                      <img src="./assets/Tsunami.svg" class="risk-icon" alt="Tsunami">
+                    </calcite-button>
+                  </div>
+                  <div class="section-info">                    
+                    <calcite-radio-group id="fl-rtp-option" layout="horizontal" appearance="solid" width="full" scale="s" role="radiogroup">
+                      <calcite-radio-group-item value="25" title="25 RTP" checked="">25 yrs</calcite-radio-group-item>
+                      <calcite-radio-group-item value="50" title="50 RTP">50 yrs</calcite-radio-group-item>
+                      <calcite-radio-group-item value="100" title="100 RTP">100 yrs</calcite-radio-group-item>
+                      <calcite-radio-group-item value="150" title="150 RTP">150 yrs</calcite-radio-group-item>
+                    </calcite-radio-group>
+                    <label>return period</label>
+                  </div>
+                  
+                </calcite-block>
+
+                <calcite-block heading="Select Exposure" summary="click on exposure icon" class="calcite-block-fill" open>
+                  <calcite-icon slot="icon" icon="number-circle-2" scale="l"></calcite-icon>
+                  <div>
+                    <calcite-button title="Population" appearance="clear" round scale="l">
+                      <img src="./assets/Affected-population.svg" class="risk-icon" alt="Population">
+                    </calcite-button>
+                    <calcite-button title="Road" appearance="clear" round scale="l" disabled>
+                      <img src="./assets/Road.svg" class="risk-icon" alt="Road">
+                    </calcite-button>
+                    <calcite-button title="Building" appearance="clear" round scale="l" disabled>
+                      <img src="./assets/Building.svg" class="risk-icon" alt="Building">
+                    </calcite-button>
+                    <calcite-button title="Bridge" appearance="clear" round scale="l" disabled>
+                      <img src="./assets/Bridge.svg" class="risk-icon" alt="Bridge">
+                    </calcite-button>                                                                                                  
+                  </div>            
+                </calcite-block>                 
               </calcite-tab>
             
             </calcite-tabs>

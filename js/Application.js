@@ -108,7 +108,10 @@ class Application extends AppBase {
           // LEGEND //          
           const legend = new Legend({view: view});
           const legendExpand = new Expand({view: view, content: legend, expandTooltip: 'Legend', expanded: true});
-          view.ui.add(legendExpand, {position: 'bottom-left', index: 0});          
+          view.ui.add(legendExpand, {position: 'bottom-left', index: 0});
+          reactiveUtils.watch(() => view.widthBreakpoint, (widthView) => {
+            widthView === "xsmall" ? legendExpand.expanded = false : legendExpand.expanded = true;
+          });
 
           // VIEW UPDATING //
           this.disableViewUpdating = false;
@@ -348,6 +351,14 @@ class Application extends AppBase {
       ts50yrsLayer.visible = ts100yrsLayer.visible = ts200yrsLayer.visible = ts500yrsLayer.visible= false;;
       ts50yrs.checked = ts100yrs.checked = ts200yrs.checked = ts500yrs.checked = false;
     });     
+
+    // SWITCH TABS >> CHANGE DISPLAY
+    const riskLayer = view.map.allLayers.find(layer => layer.title === "Risk");  
+    const analysisTypeOption = document.getElementById('analysis-type-option');
+    analysisTypeOption.addEventListener('calciteTabChange', ({detail: {tab}}) => {
+      tab === 'hazard-tab' ? riskLayer.visible= false : riskLayer.visible= true;
+    });
+
 
    }
 
