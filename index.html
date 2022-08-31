@@ -303,11 +303,11 @@
                       <div>
                         <calcite-label layout="inline">
                           <div>Hazard: </div>
-                          <div id="hazard-label" class="varible-label">Flood (25 year return period)</div>
+                          <div id="hazard-label" class="hazard-label">Flood (25 year return period)</div>
                         </calcite-label>
                         <calcite-label layout="inline">
                           <div>Exposure: </div>
-                          <div id="exposure-label" class="varible-label">Population 2020 (WorldPop)</div>
+                          <div id="exposure-label" class="exposure-label">Population 2020 (WorldPop)</div>
                         </calcite-label>
                       </div>                    
                     </div>
@@ -317,9 +317,9 @@
                   <calcite-accordion selection-mode="single" icon-position="start">
                     <calcite-accordion-item item-title="How to read the map" icon="question">
                       <ul>
-                        <li>The <span style="color:#621371;font-weight: bold;">darkest purple</span> values show where high values of both population density and hazard.</li>                        
-                        <li>The <span style="color:#5EA5D8;font-weight: bold;">darkest blue</span> values show where hazard areas, but less likely to have people.</li>
-                        <li>The <span style="color:#C9585C;font-weight: bold;">darkest red</span> values show where there is a high amount of population density, but fewer people live in hazard areas.</li>                        
+                        <li>The <span class="risk-label">darkest purple</span> values show where high values of both population density and hazard.</li>                        
+                        <li>The <span class="hazard-label">darkest blue</span> values show where hazard areas, but less likely to have people.</li>
+                        <li>The <span class="exposure-label">darkest red</span> values show where there is a high amount of population density, but fewer people live in hazard areas.</li>                        
                       </ul>
                     </calcite-accordion-item>
                   </calcite-accordion>
