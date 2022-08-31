@@ -3,7 +3,7 @@
 This is a web app of Department of Disaster Management (DDM) developed with technical support from United Nations Satellite Centre (UNOSAT) through the NORAD funded project *Strengthening Capacities in the use of Geospatial Information for Improved Resilience in Asia-Pacific and Africa* to explore the hazard & risk maps of Bangladesh. The hazard data used here are from the *Multi-Hazard Risk and Vulnerability Assessment, Modelling & Mapping Project* of DDM.
 
 ## Demo Application
-[Bangladesh Hazard & Risk Map App](https://unosat-geodrr.cern.ch/apps/BGD/MRVA/)
+[Bangladesh Hazard & Risk Map App](https://unosat-geodrr.cern.ch/apps/BGD/hazard-risk/)
 > #### WARNING: this is a work-in-progress...
 
 ## Disclaimer:
