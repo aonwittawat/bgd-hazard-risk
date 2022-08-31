@@ -54,7 +54,6 @@ calcite-block {
   overflow-y: hidden;
 }
 
-
 calcite-tabs {
   display: flex;
   flex-direction: column;
@@ -83,14 +82,6 @@ calcite-tab {
   padding: 10px 0 10px 0;
 }
 
-#coordinates-container calcite-label div {
-  width: 90px;
-}
-
-#coordinates-container calcite-label calcite-input {
-  width: 100%;
-}
-
 .esri-widget,
 .esri-widget__heading,
 .esri-widget--button,
@@ -104,7 +95,6 @@ calcite-tab {
   color: var(--calcite-ui-text-2) !important;
 }
 
-
 .toggle-panel[hidden] {
   display: none;
 }
@@ -116,6 +106,10 @@ header[slot="header"] {
 }
 
 .application-title {
+  color: var(--calcite-ui-brand);
+}
+
+.modal-title {
   color: var(--calcite-ui-brand);
 }
 
@@ -161,115 +155,15 @@ calcite-notice {
   background-color: #434447;
 }
 
-#time-slider-container {
-  flex-shrink: 0;
-  flex-grow: 0;
-  min-width: 0;
-  min-height: 88px;
-  background: #2b2b2b;
-  border-bottom: solid 1px var(--calcite-ui-border-2);
+.esri-legend__message {
+  display: none;
 }
-
-.esri-time-slider__time-extent,
-.esri-time-slider__min,
-.esri-time-slider__max {
-  display: none !important;
-}
-
-.esri-time-slider__slider {
-  background-color: var(--calcite-ui-foreground-1);
-}
-
-.esri-time-slider__mode--time-window .esri-slider__segment-1 {
-  background-color: var(--calcite-ui-brand-hover);
-}
-
-.esri-slider__thumb {
-  border-color: var(--calcite-ui-brand);
-}
-
-.esri-slider__thumb:hover {
-  border-color: var(--calcite-ui-brand-hover);
-}
-
-.esri-slider__anchor--moving:focus .esri-slider__thumb {
-  border-color: var(--calcite-ui-info);
-}
-
-.esri-slider__tick.majorTick {
-  width: 2px;
-}
-
-.esri-slider__tick.minorTick {
-  opacity: 0.3;
-}
-
-.esri-swipe {
-  background-color: transparent !important;
-}
-
-.esri-swipe__container {
-  outline: none !important;
-}
-
-.esri-swipe__divider {
-  border-left: 2px solid rgba(128, 171, 0, 0.9);
-  border-right: 2px solid rgba(128, 171, 0, 0.9);
-  background-color: rgba(128, 171, 0, 0.5) !important;
-}
-
-.esri-swipe__handle {
-  color: var(--calcite-ui-text-inverse) !important;
-  background-color: var(--calcite-ui-brand) !important;
-}
-
-.esri-swipe--horizontal .esri-swipe__handle {
-  top: calc(40% - 16px);
-}
-
-.swipe-label-container {
-  position: absolute;
-  width: 10rem;
-  top: 5px;
-  left: calc(50% - 5rem);
-  display: inline-flex;
-  justify-content: space-around;
-  background-color: var(--calcite-ui-foreground-1);
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
-}
-
-.swipe-label {
-  padding: 10px;
-  font-size: 15pt;
-  color: var(--calcite-ui-brand-hover);
-}
-
-.scale-label {
-  padding: 10px;
-  font-size: 13pt;
-  color: var(--calcite-ui-brand);
-  background-color: var(--calcite-ui-foreground-1);
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
-}
-
 .esri-legend__service {
-  padding: 5px 15px !important;
+  /* top right bottom left */
+  padding: 10px 0px 0px 0px !important;
 }
 
-#chart-node {
-  padding: 10px;
-  flex-shrink: 1;
-  flex-grow: 1;
-  min-width: 0;
-  min-height: 0;
-  background: #2b2b2b;
-}
-
-.risk-icon {
-  width: 16px;
-  height: 16px;
-}
-
+/* HAZARD TAB */
 .flood-icon,
 .storm-surge-icon,
 .landslide-icon,
@@ -300,4 +194,19 @@ calcite-notice {
 }
 .tsunami-icon {
   background-image: url(../assets/Tsunami.svg);
+}
+
+/* RISK TAB */
+.risk-icon {
+  width: 16px;
+  height: 16px;
+}
+
+.varible-label {
+  font-weight: bold;
+}
+
+.bivariate-info {
+  width: 570px;
+  height: 150px;  
 }

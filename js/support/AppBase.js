@@ -228,7 +228,7 @@ class AppBase extends AppConfig {
     const showStartupId = `show-startup-${ this.name || 'all' }`;
     const showStartup = localStorage.getItem(showStartupId) || 'show';
     if (showStartup === 'show') {
-      appDetailsModal.active = true;
+      appDetailsModal.open = true;
     }
 
     // HIDE STARTUP DIALOG //
@@ -241,13 +241,13 @@ class AppBase extends AppConfig {
     // TOGGLE APP DETAILS DIALOG //
     const appDetailsAction = document.getElementById('app-details-action');
     appDetailsAction.addEventListener('click', () => {
-      appDetailsModal.active = (!appDetailsModal.active);
+      appDetailsModal.open = (!appDetailsModal.open);
     });
 
     // OK BUTTON //
     const getStartedOk = document.getElementById('app-details-ok-btn');
     getStartedOk.addEventListener('click', () => {
-      appDetailsModal.active = (!appDetailsModal.active);
+      appDetailsModal.open = (!appDetailsModal.open);
     });
   }
 

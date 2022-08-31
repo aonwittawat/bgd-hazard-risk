@@ -51,7 +51,7 @@
           height="50px"
           />
           <h2 class="application-title margin-right-1"></h2>
-          <calcite-chip color="yellow" scale="s">Alpha version</calcite-chip>
+          <calcite-chip color="yellow" scale="s">Beta version</calcite-chip>
         </div>
         
         <div class="content-row">
@@ -97,15 +97,15 @@
             <calcite-tabs layout="center">
               
               <calcite-tab-nav id="analysis-type-option" slot="tab-nav">
-                <calcite-tab-title tab="hazard-tab" icon-start="color-coded-map" class="padding-s">
+                <calcite-tab-title tab="hazard-tab" icon-start="color-coded-map" class="padding-s" selected>
                   Hazard
                 </calcite-tab-title>
-                <calcite-tab-title tab="risk-tab" icon-start="grid-hexagon" class="padding-s" active>
+                <calcite-tab-title tab="risk-tab" icon-start="grid-hexagon" class="padding-s">
                   Risk
                 </calcite-tab-title>
               </calcite-tab-nav>
               
-              <calcite-tab tab="hazard-tab">
+              <calcite-tab tab="hazard-tab" selected>
                 <calcite-block heading="Flood inundation" class="calcite-block-fill" collapsible open>
                   <div slot="icon" class="flood-icon"></div>
                   <!-- 
@@ -126,6 +126,7 @@
                   <calcite-label alignment="start" layout="inline">
                     <calcite-switch id="fl-150yrs-switch" scale="s"></calcite-switch>150 year return period
                   </calcite-label>
+                  <div id="fl-legend-node"></div>
                 </calcite-block>
                 
                 <calcite-block heading="Storm surge inundation" class="calcite-block-fill" collapsible>
@@ -139,6 +140,7 @@
                   <calcite-label alignment="start" layout="inline">
                     <calcite-switch id="ss-100yrs-switch" scale="s"></calcite-switch>100 year return period
                   </calcite-label>
+                  <div id="ss-legend-node"></div>
                 </calcite-block>
                   
                 <calcite-block heading="Landslide susceptibility" class="calcite-block-fill" collapsible>
@@ -149,6 +151,7 @@
                   <calcite-label alignment="start" layout="inline">
                     <calcite-switch id="ls-eq-switch" scale="s"></calcite-switch>due to earthquake
                   </calcite-label>
+                  <div id="ls-legend-node"></div>
                 </calcite-block>
 
                 <calcite-block heading="Drought" class="calcite-block-fill" collapsible>
@@ -177,6 +180,7 @@
                   <calcite-label alignment="start" layout="inline">
                     <calcite-switch id="kd-100yrs-switch" scale="s"></calcite-switch>100 Year Return Period                   
                   </calcite-label>
+                  <div id="dr-legend-node"></div>
                 </calcite-block>
                 
                 <calcite-block heading="Earthquake" class="calcite-block-fill" collapsible>
@@ -198,7 +202,8 @@
                   </calcite-label>
                   <calcite-label alignment="start" layout="inline">
                     <calcite-switch id="eq-1000yrs-switch" scale="s"></calcite-switch>1000 Year Return Period                   
-                  </calcite-label>                  
+                  </calcite-label>
+                  <div id="eq-legend-node"></div>
                 </calcite-block>
                 
                 <calcite-block heading="Tsunami" class="calcite-block-fill" collapsible>
@@ -218,34 +223,36 @@
                   <calcite-label alignment="start" layout="inline">
                     <calcite-switch id="ts-1000yrs-switch" scale="s"></calcite-switch>1000 Year Return Period                   
                   </calcite-label>
+                  <div id="ts-legend-node"></div>
                 </calcite-block>
               
               </calcite-tab>
               
-              <calcite-tab tab="risk-tab" active>
+              <calcite-tab tab="risk-tab">
                 <calcite-block heading="Select Hazard" summary="click on hazard icon" class="calcite-block-fill" open>
                   <calcite-icon slot="icon" icon="number-circle-1" scale="l"></calcite-icon>
                   <div>
-                    <calcite-button title="Flood" appearance="clear" round scale="l">
+                    <calcite-button id="fl-btn" title="Flood" appearance="clear" round scale="l">
                       <img src="./assets/Flood.svg" class="risk-icon" alt="Flood">
                     </calcite-button>
-                    <calcite-button title="Storm surge" appearance="clear" round scale="l" disabled>
+                    <calcite-button id="ss-btn" title="Storm surge" appearance="clear" round scale="l">
                       <img src="./assets/Storm-surge.svg" class="risk-icon" alt="Storm surge">
                     </calcite-button>
-                    <calcite-button title="Landslide" appearance="clear" round scale="l" disabled>
+                    <calcite-button id="ls-btn" title="Landslide" appearance="clear" round scale="l" disabled>
                       <img src="./assets/Landslide.svg" class="risk-icon" alt="Landslide">
                     </calcite-button>
-                    <calcite-button title="Drought" appearance="clear" round scale="l" disabled>
+                    <calcite-button id="dr-btn" title="Drought" appearance="clear" round scale="l" disabled>
                       <img src="./assets/Drought.svg" class="risk-icon" alt="Drought">
                     </calcite-button>
-                    <calcite-button title="Earthquake" appearance="clear" round scale="l" disabled>
+                    <calcite-button id="eq-btn" title="Earthquake" appearance="clear" round scale="l" disabled>
                       <img src="./assets/Earthquake.svg" class="risk-icon" alt="Earthquake">
                     </calcite-button>
-                    <calcite-button title="Tsunami" appearance="clear" round scale="l" disabled>
+                    <calcite-button id="ts-btn" title="Tsunami" appearance="clear" round scale="l" disabled>
                       <img src="./assets/Tsunami.svg" class="risk-icon" alt="Tsunami">
                     </calcite-button>
                   </div>
-                  <div class="section-info">                    
+                <!--
+                  <div id="fl-rtp" class="section-info">
                     <calcite-radio-group id="fl-rtp-option" layout="horizontal" appearance="solid" width="full" scale="s" role="radiogroup">
                       <calcite-radio-group-item value="25" title="25 RTP" checked="">25 yrs</calcite-radio-group-item>
                       <calcite-radio-group-item value="50" title="50 RTP">50 yrs</calcite-radio-group-item>
@@ -254,6 +261,16 @@
                     </calcite-radio-group>
                     <label>return period</label>
                   </div>
+
+                  <div id="ss-rtp" class="section-info">
+                    <calcite-radio-group id="ss-rtp-option" layout="horizontal" appearance="solid" width="full" scale="s" role="radiogroup">
+                      <calcite-radio-group-item value="25" title="25 RTP" checked="">25 yrs</calcite-radio-group-item>
+                      <calcite-radio-group-item value="50" title="50 RTP">50 yrs</calcite-radio-group-item>
+                      <calcite-radio-group-item value="100" title="100 RTP">100 yrs</calcite-radio-group-item>
+                    </calcite-radio-group>
+                    <label>return period</label>
+                  </div>
+                -->
                   
                 </calcite-block>
 
@@ -273,7 +290,44 @@
                       <img src="./assets/Bridge.svg" class="risk-icon" alt="Bridge">
                     </calcite-button>                                                                                                  
                   </div>            
-                </calcite-block>                 
+                </calcite-block>
+
+                <calcite-block id="bivariate-block" class="layer-block" heading="Risk map" summary="a bivariate map illustrates two variables" open>
+                  <calcite-icon slot="icon" icon="grid-hexagon" scale="l"></calcite-icon>
+                  <div slot="control" class="content-row">
+                    <calcite-action id="bivariate-details-action" slot="actions-end" appearance="clear" scale="m" icon="information"></calcite-action>                    
+                  </div>                
+
+                  <div class="content-row">
+                    <div class="content-fill">
+                      <div>
+                        <calcite-label layout="inline">
+                          <div>Hazard: </div>
+                          <div id="hazard-label" class="varible-label">Flood (25 year return period)</div>
+                        </calcite-label>
+                        <calcite-label layout="inline">
+                          <div>Exposure: </div>
+                          <div id="exposure-label" class="varible-label">Population 2020 (WorldPop)</div>
+                        </calcite-label>
+                      </div>                    
+                    </div>
+                  </div>
+
+                  <!-- How To -->
+                  <calcite-accordion selection-mode="single" icon-position="start">
+                    <calcite-accordion-item item-title="How to read the map" icon="question">
+                      <ul>
+                        <li>The <span style="color:#621371;font-weight: bold;">darkest purple</span> values show where high values of both population density and hazard.</li>                        
+                        <li>The <span style="color:#5EA5D8;font-weight: bold;">darkest blue</span> values show where hazard areas, but less likely to have people.</li>
+                        <li>The <span style="color:#C9585C;font-weight: bold;">darkest red</span> values show where there is a high amount of population density, but fewer people live in hazard areas.</li>                        
+                      </ul>
+                    </calcite-accordion-item>
+                  </calcite-accordion>
+
+                  <div id="risk-legend-node"></div>                                
+                  
+                </calcite-block>
+
               </calcite-tab>
             
             </calcite-tabs>
@@ -314,6 +368,19 @@
       <calcite-button id="app-details-ok-btn" slot="primary" width="full" >OK</calcite-button>
     </calcite-modal>
    
+    <!-- BIVARIATE DETAILS MODAL -->
+    <calcite-modal id="bivariate-modal" color="blue" background-color="grey" scale="m" width="m" role="dialog" aria-labelledby="bivariate-modal">
+      <h3 slot="header" class="modal-title">Understanding risk map (bivariate map)</h3>
+      <div slot="content">
+        Risk maps are a new way to visualize and combine hazard and exposure data. It allows you to map two patterns within a single map and help you see if two things are related.
+        <p>This is done using a technique known as bivariate choropleth mapping, where two color ramps combine into a hexagons-grid legend showing all pattern combinations.</p>
+
+        When making a bivariate choropleth map, the goal is to show a sequence of two variables and their combinations.
+        <div>
+          <img src="./assets/Bivariate.svg" class="bivariate-info" alt="bivariate">
+        </div>
+      </div>
+    </calcite-modal>
   
   </body>
 </html>
