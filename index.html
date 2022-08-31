@@ -232,24 +232,35 @@
                 <calcite-block heading="Select Hazard" summary="click on hazard icon" class="calcite-block-fill" open>
                   <calcite-icon slot="icon" icon="number-circle-1" scale="l"></calcite-icon>
                   <div>
-                    <calcite-button id="fl-btn" title="Flood" appearance="clear" round scale="l">
+                    <calcite-button id="fl-btn" appearance="clear" round scale="l">
                       <img src="./assets/Flood.svg" class="risk-icon" alt="Flood">
                     </calcite-button>
-                    <calcite-button id="ss-btn" title="Storm surge" appearance="clear" round scale="l">
+                    <calcite-tooltip label="Flood" reference-element="fl-btn" placement="top">Flood</calcite-tooltip>
+
+                    <calcite-button id="ss-btn" appearance="clear" round scale="l">
                       <img src="./assets/Storm-surge.svg" class="risk-icon" alt="Storm surge">
                     </calcite-button>
-                    <calcite-button id="ls-btn" title="Landslide" appearance="clear" round scale="l" disabled>
+                    <calcite-tooltip label="Storm surge" reference-element="ss-btn" placement="top">Storm surge</calcite-tooltip>
+
+                    <calcite-button id="ls-btn" appearance="clear" round scale="l" disabled>
                       <img src="./assets/Landslide.svg" class="risk-icon" alt="Landslide">
                     </calcite-button>
+                    <calcite-tooltip label="Landslide" reference-element="ls-btn" placement="top">Landslide</calcite-tooltip>
+
                     <calcite-button id="dr-btn" title="Drought" appearance="clear" round scale="l" disabled>
                       <img src="./assets/Drought.svg" class="risk-icon" alt="Drought">
                     </calcite-button>
-                    <calcite-button id="eq-btn" title="Earthquake" appearance="clear" round scale="l" disabled>
+                    <calcite-tooltip label="Drought" reference-element="dr-btn" placement="top">Drought</calcite-tooltip>
+
+                    <calcite-button id="eq-btn" appearance="clear" round scale="l" disabled>
                       <img src="./assets/Earthquake.svg" class="risk-icon" alt="Earthquake">
                     </calcite-button>
-                    <calcite-button id="ts-btn" title="Tsunami" appearance="clear" round scale="l" disabled>
+                    <calcite-tooltip label="Earthquake" reference-element="eq-btn" placement="top">Earthquake</calcite-tooltip>
+
+                    <calcite-button id="ts-btn" appearance="clear" round scale="l" disabled>
                       <img src="./assets/Tsunami.svg" class="risk-icon" alt="Tsunami">
                     </calcite-button>
+                    <calcite-tooltip label="Tsunami" reference-element="ts-btn" placement="top">Tsunami</calcite-tooltip>
                   </div>
                 <!--
                   <div id="fl-rtp" class="section-info">
@@ -277,18 +288,25 @@
                 <calcite-block heading="Select Exposure" summary="click on exposure icon" class="calcite-block-fill" open>
                   <calcite-icon slot="icon" icon="number-circle-2" scale="l"></calcite-icon>
                   <div>
-                    <calcite-button title="Population" appearance="clear" round scale="l">
+                    <calcite-button id="pp-btn" appearance="clear" round scale="l">
                       <img src="./assets/Affected-population.svg" class="risk-icon" alt="Population">
                     </calcite-button>
-                    <calcite-button title="Road" appearance="clear" round scale="l" disabled>
+                    <calcite-tooltip label="Population" reference-element="pp-btn" placement="top">Population</calcite-tooltip>
+
+                    <calcite-button id="rd-btn" appearance="clear" round scale="l" disabled>
                       <img src="./assets/Road.svg" class="risk-icon" alt="Road">
                     </calcite-button>
-                    <calcite-button title="Building" appearance="clear" round scale="l" disabled>
+                    <calcite-tooltip label="Road" reference-element="rd-btn" placement="top">Road</calcite-tooltip>
+
+                    <calcite-button id="bd-btn" appearance="clear" round scale="l" disabled>
                       <img src="./assets/Building.svg" class="risk-icon" alt="Building">
                     </calcite-button>
-                    <calcite-button title="Bridge" appearance="clear" round scale="l" disabled>
+                    <calcite-tooltip label="Building" reference-element="bd-btn" placement="top">Building</calcite-tooltip>
+
+                    <calcite-button id="bg" appearance="clear" round scale="l" disabled>
                       <img src="./assets/Bridge.svg" class="risk-icon" alt="Bridge">
-                    </calcite-button>                                                                                                  
+                    </calcite-button>
+                    <calcite-tooltip label="Bridge" reference-element="bg-btn" placement="top">Bridge</calcite-tooltip>
                   </div>            
                 </calcite-block>
 
