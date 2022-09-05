@@ -127,6 +127,12 @@
                     <calcite-switch id="fl-150yrs-switch" scale="s"></calcite-switch>150 year return period
                   </calcite-label>
                   <div id="fl-legend-node"></div>
+                  <calcite-label>
+                    <calcite-slider id="fl-layer-opacity" min="0.0" max="1.0" step="0.25" value="0.75" ticks="0.25" snap></calcite-slider>
+                    <div class="content-center">
+                      <span>Opacity</span>
+                    </div>
+                  </calcite-label>
                 </calcite-block>
                 
                 <calcite-block heading="Storm surge inundation" class="calcite-block-fill" collapsible>
@@ -141,6 +147,12 @@
                     <calcite-switch id="ss-100yrs-switch" scale="s"></calcite-switch>100 year return period
                   </calcite-label>
                   <div id="ss-legend-node"></div>
+                  <calcite-label>
+                    <calcite-slider id="ss-layer-opacity" min="0.0" max="1.0" step="0.25" value="0.75" ticks="0.25" snap></calcite-slider>
+                    <div class="content-center">
+                      <span>Opacity</span>
+                    </div>
+                  </calcite-label>
                 </calcite-block>
                   
                 <calcite-block heading="Landslide susceptibility" class="calcite-block-fill" collapsible>
@@ -152,6 +164,12 @@
                     <calcite-switch id="ls-eq-switch" scale="s"></calcite-switch>due to earthquake
                   </calcite-label>
                   <div id="ls-legend-node"></div>
+                  <calcite-label>
+                    <calcite-slider id="ls-layer-opacity" min="0.0" max="1.0" step="0.25" value="1.00" ticks="0.25" snap></calcite-slider>
+                    <div class="content-center">
+                      <span>Opacity</span>
+                    </div>
+                  </calcite-label>
                 </calcite-block>
 
                 <calcite-block heading="Drought" class="calcite-block-fill" collapsible>
@@ -181,6 +199,12 @@
                     <calcite-switch id="kd-100yrs-switch" scale="s"></calcite-switch>100 Year Return Period                   
                   </calcite-label>
                   <div id="dr-legend-node"></div>
+                  <calcite-label>
+                    <calcite-slider id="dr-layer-opacity" min="0.0" max="1.0" step="0.25" value="1.00" ticks="0.25" snap></calcite-slider>
+                    <div class="content-center">
+                      <span>Opacity</span>
+                    </div>
+                  </calcite-label>
                 </calcite-block>
                 
                 <calcite-block heading="Earthquake" class="calcite-block-fill" collapsible>
@@ -204,6 +228,12 @@
                     <calcite-switch id="eq-1000yrs-switch" scale="s"></calcite-switch>1000 Year Return Period                   
                   </calcite-label>
                   <div id="eq-legend-node"></div>
+                  <calcite-label>
+                    <calcite-slider id="eq-layer-opacity" min="0.0" max="1.0" step="0.25" value="1.00" ticks="0.25" snap></calcite-slider>
+                    <div class="content-center">
+                      <span>Opacity</span>
+                    </div>
+                  </calcite-label>
                 </calcite-block>
                 
                 <calcite-block heading="Tsunami" class="calcite-block-fill" collapsible>
@@ -224,6 +254,12 @@
                     <calcite-switch id="ts-1000yrs-switch" scale="s"></calcite-switch>1000 Year Return Period                   
                   </calcite-label>
                   <div id="ts-legend-node"></div>
+                  <calcite-label>
+                    <calcite-slider id="ts-layer-opacity" min="0.0" max="1.0" step="0.25" value="1.00" ticks="0.25" snap></calcite-slider>
+                    <div class="content-center">
+                      <span>Opacity</span>
+                    </div>
+                  </calcite-label>
                 </calcite-block>
               
               </calcite-tab>
@@ -303,7 +339,7 @@
                     </calcite-button>
                     <calcite-tooltip label="Building" reference-element="bd-btn" placement="top">Building</calcite-tooltip>
 
-                    <calcite-button id="bg" appearance="clear" round scale="l" disabled>
+                    <calcite-button id="bg-btn" appearance="clear" round scale="l" disabled>
                       <img src="./assets/Bridge.svg" class="risk-icon" alt="Bridge">
                     </calcite-button>
                     <calcite-tooltip label="Bridge" reference-element="bg-btn" placement="top">Bridge</calcite-tooltip>

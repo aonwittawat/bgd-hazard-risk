@@ -366,6 +366,11 @@ class Application extends AppBase {
         fl25yrs.checked = fl50yrs.checked = fl100yrs.checked = false;
       });
       createLegend("fl-legend-node", flLayer);
+      
+      const flLayersOpacity = document.getElementById('fl-layer-opacity');
+      flLayersOpacity.addEventListener('calciteSliderInput', () => {
+        flLayer.opacity = flLayersOpacity.value;
+      });
 
       // STORM SURGE //    
       const ssLayer = view.map.allLayers.find(layer => layer.title === "Storm surge inundation");
@@ -393,6 +398,11 @@ class Application extends AppBase {
       });
       createLegend("ss-legend-node", ssLayer);
 
+      const ssLayersOpacity = document.getElementById('ss-layer-opacity');
+      ssLayersOpacity.addEventListener('calciteSliderInput', () => {
+        ssLayer.opacity = ssLayersOpacity.value;
+      });
+
       // LANDSLIDE //
       const lsLayer = view.map.allLayers.find(layer => layer.title === "Landslide susceptibility");
       const lsRF = document.getElementById("ls-rf-switch");
@@ -411,7 +421,12 @@ class Application extends AppBase {
         lsRF.checked = false;
       });
       createLegend("ls-legend-node", lsLayer);
-      
+
+      const lsLayersOpacity = document.getElementById('ls-layer-opacity');
+      lsLayersOpacity.addEventListener('calciteSliderInput', () => {
+        lsLayer.opacity = lsLayersOpacity.value;
+      });
+
       // DROUGHT //
       const drLayer = view.map.allLayers.find(layer => layer.title === "Drought");
       const pmd25yrs = document.getElementById("pmd-10yrs-switch");
@@ -458,7 +473,11 @@ class Application extends AppBase {
         pmd25yrs.checked = pmd50yrs.checked = pmd100yrs.checked = kd10yrs.checked = kd50yrs.checked = false;
       });
       createLegend("dr-legend-node", drLayer);
-      
+      const drLayersOpacity = document.getElementById('dr-layer-opacity');
+      drLayersOpacity.addEventListener('calciteSliderInput', () => {
+        drLayer.opacity = drLayersOpacity.value;
+      });
+
       // EARTHQUAKE //
       const eqLayer = view.map.allLayers.find(layer => layer.title === "PGA corresponding to earthquake");    
       const eq50yrs = document.getElementById("eq-50yrs-switch");
@@ -498,7 +517,12 @@ class Application extends AppBase {
         eq50yrs.checked = eq100yrs.checked = eq200yrs.checked = eq500yrs.checked = false;
       });
       createLegend("eq-legend-node", eqLayer);
-      
+
+      const eqLayersOpacity = document.getElementById('eq-layer-opacity');
+      eqLayersOpacity.addEventListener('calciteSliderInput', () => {
+        eqLayer.opacity = eqLayersOpacity.value;
+      });
+
       // TSUNAMI //
       const tsLayer = view.map.allLayers.find(layer => layer.title === "Tsunami inundation");    
       const ts50yrs = document.getElementById("ts-50yrs-switch");
@@ -538,7 +562,12 @@ class Application extends AppBase {
         ts50yrs.checked = ts100yrs.checked = ts200yrs.checked = ts500yrs.checked = false;
       });
       createLegend("ts-legend-node", tsLayer);
-    
+
+      const tsLayersOpacity = document.getElementById('ts-layer-opacity');
+      tsLayersOpacity.addEventListener('calciteSliderInput', () => {
+        tsLayer.opacity = tsLayersOpacity.value;
+      });
+
     });
   }
 }
