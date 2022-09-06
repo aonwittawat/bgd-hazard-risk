@@ -205,6 +205,22 @@ class Application extends AppBase {
             applyRenderer(response);
           });          
 
+          const lsBtn = document.getElementById('ls-btn');
+          lsBtn.addEventListener('click', async () => {
+            bivariateBlock.hidden = false;
+            hazardLabel.innerHTML = "Landslide due to rainfall";     
+            const response = await createRelationshipRenderer("lsrain");
+            applyRenderer(response);
+          });
+
+          const eqBtn = document.getElementById('eq-btn');
+          eqBtn.addEventListener('click', async () => {
+            bivariateBlock.hidden = false;
+            hazardLabel.innerHTML = "PGA corresponding to earthquake (100 year return period)";     
+            const response = await createRelationshipRenderer("eq100");
+            applyRenderer(response);
+          });
+
           const createRelationshipRenderer = (hzField) => {
             const params = {
             layer: riskLayer,
