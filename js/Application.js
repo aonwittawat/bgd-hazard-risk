@@ -221,6 +221,14 @@ class Application extends AppBase {
             applyRenderer(response);
           });
 
+          const tsBtn = document.getElementById('ts-btn');
+          tsBtn.addEventListener('click', async () => {
+            bivariateBlock.hidden = false;
+            hazardLabel.innerHTML = "Tsunami (100 year return period)";     
+            const response = await createRelationshipRenderer("ts100");
+            applyRenderer(response);
+          });
+
           const createRelationshipRenderer = (hzField) => {
             const params = {
             layer: riskLayer,
