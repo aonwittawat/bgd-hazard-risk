@@ -298,27 +298,66 @@
                     </calcite-button>
                     <calcite-tooltip label="Tsunami" reference-element="ts-btn" placement="top">Tsunami</calcite-tooltip>
                   </div>
-                <!--
-                  <div id="fl-rtp" class="section-info">
+                
+                  <div id="fl-rtp-btn" class="section-info" hidden>
                     <calcite-radio-group id="fl-rtp-option" layout="horizontal" appearance="solid" width="full" scale="s" role="radiogroup">
-                      <calcite-radio-group-item value="25" title="25 RTP" checked="">25 yrs</calcite-radio-group-item>
-                      <calcite-radio-group-item value="50" title="50 RTP">50 yrs</calcite-radio-group-item>
-                      <calcite-radio-group-item value="100" title="100 RTP">100 yrs</calcite-radio-group-item>
-                      <calcite-radio-group-item value="150" title="150 RTP">150 yrs</calcite-radio-group-item>
+                      <calcite-radio-group-item value="flood25" title="25 year return period" checked>25 yrs</calcite-radio-group-item>
+                      <calcite-radio-group-item value="flood50" title="50 year return period">50 yrs</calcite-radio-group-item>
+                      <calcite-radio-group-item value="flood100" title="100 year return period">100 yrs</calcite-radio-group-item>
+                      <calcite-radio-group-item value="flood150" title="150 year return period">150 yrs</calcite-radio-group-item>
                     </calcite-radio-group>
                     <label>return period</label>
                   </div>
-                  
-                  <div id="ss-rtp" class="section-info">
+                
+                  <div id="ss-rtp-btn" class="section-info" hidden>
                     <calcite-radio-group id="ss-rtp-option" layout="horizontal" appearance="solid" width="full" scale="s" role="radiogroup">
+                      <calcite-radio-group-item value="ss25" title="25 year return period" checked>25 yrs</calcite-radio-group-item>
+                      <calcite-radio-group-item value="ss50" title="50 year return period">50 yrs</calcite-radio-group-item>
+                      <calcite-radio-group-item value="ss100" title="100 year return period">100 yrs</calcite-radio-group-item>
+                    </calcite-radio-group>
+                    <label>return period</label>
+                  </div>
+                  
+                  <div id="ls-rtp-btn" class="section-info" hidden>
+                    <calcite-radio-group id="ls-rtp-option" layout="horizontal" appearance="solid" width="full" scale="s" role="radiogroup">
+                      <calcite-radio-group-item value="lsrain" title="due to rainfall" checked>rainfall</calcite-radio-group-item>
+                      <calcite-radio-group-item value="lseq" title="due to earthquake">earthquake</calcite-radio-group-item>
+                    </calcite-radio-group>
+                  </div>
+                  
+                  <!--
+                  <div id="dr-rtp-btn" class="section-info">
+                    <calcite-radio-group id="dr-rtp-option" layout="horizontal" appearance="solid" width="full" scale="s" role="radiogroup">
                       <calcite-radio-group-item value="25" title="25 RTP" checked="">25 yrs</calcite-radio-group-item>
                       <calcite-radio-group-item value="50" title="50 RTP">50 yrs</calcite-radio-group-item>
                       <calcite-radio-group-item value="100" title="100 RTP">100 yrs</calcite-radio-group-item>
                     </calcite-radio-group>
                     <label>return period</label>
                   </div>
-                -->
-                  
+                  -->
+
+                  <div id="eq-rtp-btn" class="section-info" hidden>
+                    <calcite-radio-group id="eq-rtp-option" layout="horizontal" appearance="solid" width="full" scale="s" role="radiogroup">
+                      <calcite-radio-group-item value="eq50" title="50 year return period" checked>50 yrs</calcite-radio-group-item>
+                      <calcite-radio-group-item value="eq100" title="100 year return period">100 yrs</calcite-radio-group-item>
+                      <calcite-radio-group-item value="eq200" title="200 year return period">200 yrs</calcite-radio-group-item>
+                      <calcite-radio-group-item value="eq500" title="500 year return period">500 yrs</calcite-radio-group-item>
+                      <calcite-radio-group-item value="eq1000" title="1000 year return period">1000 yrs</calcite-radio-group-item>
+                    </calcite-radio-group>
+                    <label>return period</label>
+                  </div>
+
+                  <div id="ts-rtp-btn" class="section-info" hidden>
+                    <calcite-radio-group id="ts-rtp-option" layout="horizontal" appearance="solid" width="full" scale="s" role="radiogroup">
+                      <calcite-radio-group-item value="ts50" title="50 year return period" checked>50 yrs</calcite-radio-group-item>
+                      <calcite-radio-group-item value="ts100" title="100 year return period">100 yrs</calcite-radio-group-item>
+                      <calcite-radio-group-item value="ts200" title="200 year return period">200 yrs</calcite-radio-group-item>
+                      <calcite-radio-group-item value="ts500" title="500 year return period">500 yrs</calcite-radio-group-item>
+                      <calcite-radio-group-item value="ts1000" title="1000 year return period">1000 yrs</calcite-radio-group-item>
+                    </calcite-radio-group>
+                    <label>return period</label>
+                  </div>
+
                 </calcite-block>
 
                 <calcite-block heading="Select Exposure" summary="click on exposure icon" class="calcite-block-fill" open>

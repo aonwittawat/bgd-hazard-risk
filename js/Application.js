@@ -186,46 +186,97 @@ class Application extends AppBase {
           };
           
           const hazardLabel = document.getElementById('hazard-label');
-
           const flBtn = document.getElementById('fl-btn');
-          flBtn.addEventListener('click', async () => {
-            //const isActive = flBtn.toggleAttribute('active');
-            //flBtn.setAttribute('appearance', isActive ? 'solid' : 'clear');
-            bivariateBlock.hidden = false;
-            hazardLabel.innerHTML = "Flood (25 year return period)";
-            const response = await createRelationshipRenderer("flood25");
-            applyRenderer(response);
-          });
+          const flRTPBtn = document.getElementById('fl-rtp-btn');
+          const flRTPOptions = document.getElementById('fl-rtp-option');
 
           const ssBtn = document.getElementById('ss-btn');
-          ssBtn.addEventListener('click', async () => {
-            bivariateBlock.hidden = false;
-            hazardLabel.innerHTML = "Storm surge (100 year return period)";     
-            const response = await createRelationshipRenderer("ss100");
-            applyRenderer(response);
-          });          
+          const ssRTPBtn = document.getElementById('ss-rtp-btn');
+          const ssRTPOptions = document.getElementById('ss-rtp-option');
 
           const lsBtn = document.getElementById('ls-btn');
-          lsBtn.addEventListener('click', async () => {
-            bivariateBlock.hidden = false;
-            hazardLabel.innerHTML = "Landslide due to rainfall";     
-            const response = await createRelationshipRenderer("lsrain");
-            applyRenderer(response);
-          });
+          const lsRTPBtn = document.getElementById('ls-rtp-btn');
+          const lsRTPOptions = document.getElementById('ls-rtp-option');
 
           const eqBtn = document.getElementById('eq-btn');
-          eqBtn.addEventListener('click', async () => {
+          const eqRTPBtn = document.getElementById('eq-rtp-btn');
+          const eqRTPOptions = document.getElementById('eq-rtp-option');
+
+          const tsBtn = document.getElementById('ts-btn');
+          const tsRTPBtn = document.getElementById('ts-rtp-btn');
+          const tsRTPOptions = document.getElementById('ts-rtp-option');
+
+          flBtn.addEventListener('click', async () => {
             bivariateBlock.hidden = false;
-            hazardLabel.innerHTML = "PGA corresponding to earthquake (100 year return period)";     
-            const response = await createRelationshipRenderer("eq100");
+            flRTPBtn.hidden = false;
+            ssRTPBtn.hidden = lsRTPBtn.hidden = eqRTPBtn.hidden = tsRTPBtn.hidden = true;
+            hazardLabel.innerHTML = `Flood ${flRTPOptions.selectedItem.title}`;
+            const response = await createRelationshipRenderer(flRTPOptions.selectedItem.value);
+            applyRenderer(response);
+          });
+          flRTPOptions.addEventListener('calciteRadioGroupChange', async () => {
+            hazardLabel.innerHTML = `Flood ${flRTPOptions.selectedItem.title}`;
+            const response = await createRelationshipRenderer(flRTPOptions.selectedItem.value);
             applyRenderer(response);
           });
 
-          const tsBtn = document.getElementById('ts-btn');
+          ssBtn.addEventListener('click', async () => {
+            bivariateBlock.hidden = false;
+            ssRTPBtn.hidden = false;
+            flRTPBtn.hidden = lsRTPBtn.hidden = eqRTPBtn.hidden = tsRTPBtn.hidden = true;
+            hazardLabel.innerHTML = `Storm surge ${ssRTPOptions.selectedItem.title}`;
+            const response = await createRelationshipRenderer(ssRTPOptions.selectedItem.value);
+            applyRenderer(response);
+          });
+          ssRTPOptions.addEventListener('calciteRadioGroupChange', async () => {
+            bivariateBlock.hidden = false;
+            hazardLabel.innerHTML = `Storm surge ${ssRTPOptions.selectedItem.title}`;     
+            const response = await createRelationshipRenderer(ssRTPOptions.selectedItem.value);
+            applyRenderer(response);
+          });
+
+          lsBtn.addEventListener('click', async () => {
+            bivariateBlock.hidden = false;
+            lsRTPBtn.hidden = false;
+            flRTPBtn.hidden = ssRTPBtn.hidden = eqRTPBtn.hidden = tsRTPBtn.hidden = true;
+            hazardLabel.innerHTML = `Landslide ${lsRTPOptions.selectedItem.title}`;     
+            const response = await createRelationshipRenderer(lsRTPOptions.selectedItem.value);
+            applyRenderer(response);
+          });
+          lsRTPOptions.addEventListener('calciteRadioGroupChange', async () => {
+            bivariateBlock.hidden = false;
+            hazardLabel.innerHTML = `Landslide ${lsRTPOptions.selectedItem.title}`;
+            const response = await createRelationshipRenderer(lsRTPOptions.selectedItem.value);
+            applyRenderer(response);
+          });
+          
+          eqBtn.addEventListener('click', async () => {
+            bivariateBlock.hidden = false;
+            eqRTPBtn.hidden = false;
+            flRTPBtn.hidden = ssRTPBtn.hidden = lsRTPBtn.hidden = tsRTPBtn.hidden = true;
+            hazardLabel.innerHTML = `PGA corresponding to earthquake ${eqRTPOptions.selectedItem.title}`;
+            const response = await createRelationshipRenderer(eqRTPOptions.selectedItem.value);
+            applyRenderer(response);
+          });
+          eqRTPOptions.addEventListener('calciteRadioGroupChange', async () => {
+            bivariateBlock.hidden = false;
+            hazardLabel.innerHTML = `PGA corresponding to earthquake ${eqRTPOptions.selectedItem.title}`;
+            const response = await createRelationshipRenderer(eqRTPOptions.selectedItem.value);
+            applyRenderer(response);
+          });
+          
           tsBtn.addEventListener('click', async () => {
             bivariateBlock.hidden = false;
-            hazardLabel.innerHTML = "Tsunami (100 year return period)";     
-            const response = await createRelationshipRenderer("ts100");
+            tsRTPBtn.hidden = false;
+            flRTPBtn.hidden = ssRTPBtn.hidden = lsRTPBtn.hidden = eqRTPBtn.hidden = true;
+            hazardLabel.innerHTML = `Tsunami ${tsRTPOptions.selectedItem.title}`;
+            const response = await createRelationshipRenderer(tsRTPOptions.selectedItem.value);
+            applyRenderer(response);
+          });
+          tsRTPOptions.addEventListener('calciteRadioGroupChange', async () => {
+            bivariateBlock.hidden = false;
+            hazardLabel.innerHTML = `Tsunami ${tsRTPOptions.selectedItem.title}`;
+            const response = await createRelationshipRenderer(tsRTPOptions.selectedItem.value);
             applyRenderer(response);
           });
 
