@@ -268,63 +268,63 @@ class Application extends AppBase {
                 info.label = "Both High";
                 info.symbol = {
                   ...commonProperties,
-                  color: [98, 19, 113, 255]
+                  color: "#6d3b2f"
                 };
                 break;
               case "HM":
                 info.label = "High - Medium";
                 info.symbol = {
                   ...commonProperties,
-                  color: [98, 77, 138, 255]
+                  color: "#ae3b3b"
                 };
                 break;
               case "HL":
                 info.label = "Hazard (High)"
                 info.symbol = {
                   ...commonProperties,
-                  color: [94, 165, 216, 255]
+                  color: "#d13b3b"
                 };
                 break;
               case "MH":
                 info.label = "Medium - High"
                 info.symbol = {
                   ...commonProperties,
-                  color: [150, 53, 103, 255]
+                  color: "#6d9a2f"
                 };
                 break;
               case "MM":
                 info.label = "Medium - Medium"
                 info.symbol = {
                   ...commonProperties,
-                  color: [158, 121, 155, 255]
+                  color: "#ae9a90"
                 };
                 break;
               case "ML":
                 info.label = "Medium - Low"
                 info.symbol = {
                   ...commonProperties,
-                  color: [165, 198, 229, 255]
+                  color: "#de9a9a"
                 };
                 break;
               case "LH":
                 info.label = "Population density (High)"
                 info.symbol = {
                   ...commonProperties,
-                  color: [201, 88, 92, 255]
+                  color: "#6dbd2f"
                 };
                 break;
               case "LM":
                 info.label = "Low - Medium"
                 info.symbol = {
                   ...commonProperties,
-                  color: [218, 165, 172, 255]
+                  color: "#aed490"
                 };
                 break;
               case "LL":
                 info.label = "Both Low";
                 info.symbol = {
                   ...commonProperties,
-                  color: [236, 230, 242, 255]
+                  color: "#e8e8e8"
                 };
                 break;
             }

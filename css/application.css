@@ -200,17 +200,17 @@ calcite-notice {
 
 .risk-label {
   font-weight: bold;
-  color: #621371;
+  color: #6d3b2f;
 }
 
 .hazard-label {
   font-weight: bold;
-  color: #5EA5D8;
+  color: #d13b3b;
 }
 
 .exposure-label {
   font-weight: bold;
-  color: #C9585C;
+  color: #6dbd2f;
 }
 
 .bivariate-info {
