@@ -183,6 +183,12 @@ class Application extends AppBase {
           const riskOpen = () => {
             bivariateBlock.hidden = true;            
             riskLayer.visible= true;
+
+            flRTPBtn.hidden = true;
+            ssRTPBtn.hidden = true;
+            lsRTPBtn.hidden = true;
+            eqRTPBtn.hidden = true;
+            tsRTPBtn.hidden = true;
           };
           
           const hazardLabel = document.getElementById('hazard-label');
